@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+<style>
+*{
+  top: 0px;
+  left:0px;
+  padding:0px;
+  margin:0px;
+}
+body { 
+  padding:30px;
+  background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/04/Rain-on-glass-wallpaper-full-HD.jpg');
+  
+}
+h4{
+  margin-top: 50px;
+  text-align: center;
+  font-family:Arimo;
+  font-weight: bold;
+  font-size: 50px;
+  color:white;
+}
+.login{
+  margin-top: 60px;
+}
+input{
+  width:400px;
+  height:50px;
+  border-radius: 10px;
+  padding:10px;
+  margin:20px 0;
+  outline:none;
+  border: 1px solid blue;
+}
+.submit_button{
+  text-align: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+button{
+  align-items: center;
+  height:60px;
+  width:120px;
+}
+button :hover{
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+.prediction_text{
+   text-align: center;
+   color:white;
+}
+</style>
+</head>
+
+<body>
+
+	  <h4>FUTURE WHEATHER PREDICTION</h4>
+    <div class="login">
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('y_predict')}}"method="post">
+     
+      
+    
+      <div class="row">
+        <div class="col-lg-3">
+             <input type="text" name="TempHighF" placeholder="TempHighF" required="required" />
+             <input type="text" name="TempAvgF " placeholder="TempAvgF " required="required" />
+             <input type="text" name="TempLowF " placeholder="TempLowF" required="required" />
+             <input type="text" name="DewPointHighF" placeholder="DewPointHighF" required="required" />
+             <input type="text" name="DewPointAvgF" placeholder="DewPointAvgF" required="required" />
+         </div>
+         <div class="col-lg-3">
+              <input type="text" name="DewPointLowF" placeholder="DewPointLowF" required="required" />
+              <input type="float" name="HumidityHighPercent" placeholder="HumidityHighPercent" required="required" />
+              <input type="float" name="HumidityAvgPercent " placeholder="HumidityAvgPercent" required="required" />
+              <input type="text" name="HumidityLowPercent" placeholder="HumidityLowPercent" required="required" />
+              <input type="text" name="SeaLevelPressureHighInches" placeholder="SeaLevelPressureHighInches" required="required" />  
+          </div>
+          <div class="col-lg-3">
+              <input type="text" name="SeaLevelPressureAvgInches" placeholder="SeaLevelPressureAvgInches" required="required" />
+              <input type="text" name="SeaLevelPressureLowInches" placeholder="SeaLevelPressureLowInches" required="required" />
+              <input type="text" name="VisibilityHighMiles" placeholder="VisibilityHighMiles" required="required" />
+              <input type="text" name="VisibilityAvgMiles" placeholder="VisibilityAvgMiles" required="required" />
+              <input type="text" name=" VisibilityLowMiles" placeholder="VisibilityLowMiles " required="required" /> 
+          </div>
+          <div class="col-lg-3"> 
+            <input type="text" name="WindHighMPH" placeholder="WindHighMPH" required="required" />    
+            <input type="text" name="WindAvgMPH" placeholder="WindAvgMPH" required="required" />
+            <input type="text" name="WindGustMPH" placeholder="WindGustMPH" required="required" />
+            <input type="float" name="PrecipitationSumInches" placeholder="PrecipitationSumInches" required="required" />
+          </div>
+      </div>
+      <div class="submit_button">
+        <button type="submit" class="btn btn-warning  " position="center">Predict</button>
+      </div>
+        
+    
+    <div class="predicton_text">
+      {{ prediction_text  }}
+    </div>
+    
+
+ </div>
+
+
+</body>
+</html>
+
